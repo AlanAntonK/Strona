@@ -5,86 +5,151 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alan Kieś</title>
 <meta name="description" content="Alan Kieś – Wirtschaftsabsolvent der SGH Warschau mit Schwerpunkt deutsch-polnische Wirtschaftsbeziehungen.">
+<meta name="theme-color" content="#08090a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f7f5f0; --surface:#ffffff; --text:#1d1f23; --muted:#5d6370;
-    --line:#e3dfd6; --accent:#9c2f2f; --accent-soft:#f3e4e1;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#15171a; --surface:#1d2024; --text:#ecebe7; --muted:#a3a8b1;
-      --line:#2e3238; --accent:#e07a6e; --accent-soft:#33221f;
-    }
+    --black:#08090a;
+    --panel:#101214;
+    --panel-2:#15181b;
+    --white:#f5f6f7;
+    --grey:#9aa1a9;
+    --line:#23272b;
+    --emerald:#10b981;
+    --emerald-deep:#047857;
+    --emerald-glow:rgba(16,185,129,.18);
+    --chrome:linear-gradient(135deg,#f9fafb 0%,#9ca3af 22%,#e5e7eb 40%,#6b7280 58%,#f3f4f6 76%,#a1a1aa 100%);
+    --chrome-line:linear-gradient(90deg,transparent,#d1d5db 30%,#6b7280 50%,#e5e7eb 70%,transparent);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    background:var(--bg); color:var(--text);
-    font-family:Inter,system-ui,sans-serif; font-size:17px; line-height:1.65;
+    background:var(--black); color:var(--white);
+    font-family:Inter,system-ui,sans-serif; font-size:16.5px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 85% -5%, var(--emerald-glow), transparent 70%),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:auto, 56px 56px, 56px 56px;
+    background-attachment:fixed;
   }
-  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  ::selection{background:var(--emerald);color:var(--black)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  .mono{font-family:"JetBrains Mono",monospace}
+
+  /* chrome text */
+  .chrome{
+    background:var(--chrome); background-size:200% 200%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shine 9s ease-in-out infinite;
+  }
+  @keyframes shine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  @media (prefers-reduced-motion:reduce){.chrome{animation:none}}
+
+  /* chrome divider */
+  .rule{height:1px;background:var(--chrome-line);opacity:.55;border:0}
 
   /* ---------- Navigation ---------- */
-  nav{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 88%,transparent);
-      backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
-  nav .logo{font-family:Fraunces,serif;font-weight:650;font-size:20px;color:var(--text);text-decoration:none}
-  nav ul{list-style:none;display:flex;gap:22px}
-  nav a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500}
-  nav a:hover{color:var(--accent)}
-  @media (max-width:560px){ nav ul{display:none} }
+  nav{position:sticky;top:0;z-index:10;
+      background:rgba(8,9,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:62px}
+  .logo{font-family:Sora,sans-serif;font-weight:700;font-size:18px;letter-spacing:.14em;text-decoration:none}
+  .logo .dot{color:var(--emerald);-webkit-text-fill-color:var(--emerald)}
+  nav ul{list-style:none;display:flex;gap:28px}
+  nav a{color:var(--grey);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+  nav a:hover{color:var(--emerald)}
+  @media (max-width:600px){ nav ul{display:none} }
 
-  /* ---------- Kopfbereich ---------- */
-  header{padding:80px 0 56px}
-  .avatar{width:96px;height:96px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
-          display:grid;place-items:center;font-family:Fraunces,serif;font-size:36px;font-weight:650;margin-bottom:28px;
-          object-fit:cover}
-  h1{font-family:Fraunces,serif;font-weight:650;font-size:clamp(38px,7vw,56px);line-height:1.08;letter-spacing:-.01em}
-  .tagline{font-size:20px;color:var(--muted);margin-top:16px;max-width:600px}
-  .meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
-  .chip{font-size:14px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--surface)}
-  .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
-  .btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none}
-  .btn.primary{background:var(--accent);color:#fff}
-  .btn.ghost{border:1px solid var(--line);color:var(--text);background:var(--surface)}
-  .btn:hover{opacity:.88}
+  /* ---------- Hero ---------- */
+  header{padding:96px 0 72px;position:relative}
+  .avatar-ring{width:104px;height:104px;border-radius:50%;padding:2px;background:var(--chrome);margin-bottom:34px}
+  .avatar{width:100%;height:100%;border-radius:50%;background:var(--panel);display:grid;place-items:center;
+          font-family:Sora,sans-serif;font-weight:600;font-size:34px;color:var(--white);object-fit:cover}
+  .eyebrow{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--emerald);display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--emerald)}
+  h1{font-family:Sora,sans-serif;font-weight:700;font-size:clamp(46px,9vw,84px);line-height:1;letter-spacing:-.035em;margin:18px 0 22px}
+  .tagline{font-size:19px;color:var(--grey);max-width:620px;font-weight:400}
+  .tagline strong{color:var(--white);font-weight:500}
+  .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+  .chip{font-size:13px;padding:6px 14px;border-radius:999px;color:var(--white);
+        background:var(--panel);border:1px solid var(--line)}
+  .chip i{font-style:normal;color:var(--emerald);margin-right:6px}
+  .cta{margin-top:38px;display:flex;flex-wrap:wrap;gap:14px}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:10px;
+       font-weight:600;font-size:14.5px;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
+  .btn.primary{background:var(--emerald);color:var(--black);box-shadow:0 0 0 0 var(--emerald-glow)}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(16,185,129,.55)}
+  .btn.ghost{color:var(--white);position:relative;background:var(--panel);isolation:isolate}
+  .btn.ghost::before{content:"";position:absolute;inset:0;border-radius:10px;padding:1px;background:var(--chrome);
+       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:-1}
+  .btn.ghost:hover{transform:translateY(-2px)}
+  .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(3px)}
 
-  /* ---------- Abschnitte ---------- */
-  section{padding:48px 0;border-top:1px solid var(--line)}
-  h2{font-family:Fraunces,serif;font-weight:650;font-size:28px;margin-bottom:22px}
-  p + p{margin-top:14px}
-  .item{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:16px 0}
-  .item + .item{border-top:1px dashed var(--line)}
-  .when{color:var(--muted);font-size:15px;padding-top:2px}
-  .item h3{font-size:17px;font-weight:600}
-  .item .where{color:var(--accent);font-weight:500;font-size:15px}
-  .item p{color:var(--muted);font-size:16px;margin-top:6px}
-  @media (max-width:560px){ .item{grid-template-columns:1fr;gap:4px} }
+  /* ---------- Sections ---------- */
+  section{padding:72px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px}
+  .sec-num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--emerald)}
+  h2{font-family:Sora,sans-serif;font-weight:600;font-size:30px;letter-spacing:-.02em}
+  .lead p{color:var(--grey);font-size:17.5px}
+  .lead p strong{color:var(--white);font-weight:500}
+  .lead p + p{margin-top:16px}
 
-  .highlight{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);
-             border-radius:8px;padding:22px 24px}
-  .highlight .label{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:600}
-  .highlight h3{font-family:Fraunces,serif;font-weight:500;font-size:21px;line-height:1.35;margin:8px 0 10px}
-  .highlight p{color:var(--muted);font-size:16px}
+  /* timeline cards */
+  .card{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:14px;
+        padding:24px 26px;display:grid;grid-template-columns:140px 1fr;gap:22px;transition:border-color .25s,transform .25s}
+  .card + .card{margin-top:14px}
+  .card:hover{border-color:rgba(16,185,129,.45);transform:translateY(-2px)}
+  .when{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--grey);text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+  .card h3{font-family:Sora,sans-serif;font-size:17.5px;font-weight:600;letter-spacing:-.01em}
+  .where{color:var(--emerald);font-size:14.5px;font-weight:500;margin-top:2px}
+  .card p{color:var(--grey);font-size:15.5px;margin-top:8px}
+  @media (max-width:600px){ .card{grid-template-columns:1fr;gap:6px} }
 
-  .langs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-  .lang{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
-  .lang strong{display:block}
-  .lang span{color:var(--muted);font-size:15px}
+  /* thesis highlight with chrome border */
+  .feature{margin-top:22px;position:relative;border-radius:16px;padding:30px 30px 28px;background:var(--panel);isolation:isolate;overflow:hidden}
+  .feature::before{content:"";position:absolute;inset:0;border-radius:16px;padding:1px;background:var(--chrome);
+       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:-1}
+  .feature::after{content:"";position:absolute;right:-80px;top:-80px;width:220px;height:220px;border-radius:50%;
+       background:radial-gradient(circle,rgba(16,185,129,.22),transparent 70%);z-index:-1}
+  .feature .label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--emerald)}
+  .feature h3{font-family:Sora,sans-serif;font-weight:400;font-size:clamp(19px,3vw,23px);line-height:1.4;margin:12px 0 12px;letter-spacing:-.01em}
+  .feature p{color:var(--grey);font-size:15.5px}
 
-  .contact a{color:var(--accent);font-weight:500}
-  footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
-  footer a{color:var(--muted)}
+  /* languages */
+  .langs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .lang{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .lang strong{font-family:Sora,sans-serif;font-weight:600;font-size:18px;display:block}
+  .lang span{color:var(--grey);font-size:14.5px}
+  .bar{height:3px;background:var(--line);border-radius:3px;margin-top:16px;overflow:hidden}
+  .bar b{display:block;height:100%;background:linear-gradient(90deg,var(--emerald-deep),var(--emerald))}
+
+  /* contact */
+  .contact-box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:40px 34px;text-align:center}
+  .contact-box h2{font-size:clamp(28px,5vw,40px);margin-bottom:14px}
+  .contact-box p{color:var(--grey);max-width:480px;margin:0 auto}
+  .links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}
+
+  footer{padding:34px 0 44px;color:var(--grey);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--grey);text-decoration:none}
+  footer a:hover{color:var(--emerald)}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <a class="logo" href="#">Alan Kieś</a>
+    <a class="logo chrome" href="#">ALAN KIEŚ<span class="dot">.</span></a>
     <ul>
       <li><a href="#ueber-mich">Über mich</a></li>
       <li><a href="#ausbildung">Ausbildung</a></li>
@@ -96,35 +161,44 @@
 
 <main class="wrap">
 
-  <!-- ====== KOPFBEREICH ====== -->
+  <!-- ====== HERO ====== -->
   <header>
-    <!-- Foto: Ersetze die nächste Zeile durch  <img class="avatar" src="Alan Kies - Foto.png" alt="Alan Kieś">  -->
-    <div class="avatar">AK</div>
-    <h1>Alan Kieś</h1>
-    <p class="tagline">Wirtschaftsabsolvent der SGH Warschau mit Schwerpunkt auf internationalem Business und deutsch-polnischen Wirtschaftsbeziehungen.</p>
+    <div class="avatar-ring">
+      <!-- Foto: Ersetze die nächste Zeile durch  <img class="avatar" src="foto.jpg" alt="Alan Kieś">  -->
+      <div class="avatar">AK</div>
+    </div>
+    <div class="eyebrow">International Business · DE ⇄ PL</div>
+    <h1 class="chrome">Alan Kieś</h1>
+    <p class="tagline">Wirtschaftsabsolvent der <strong>SGH Warschau</strong> mit Schwerpunkt auf internationalem Business und <strong>deutsch-polnischen Wirtschaftsbeziehungen</strong>.</p>
     <div class="meta">
-      <span class="chip">📍 Region Nürnberg / Fürth / Erlangen</span>
-      <span class="chip">🇵🇱 🇩🇪 Deutsch-polnisch</span>
+      <span class="chip"><i>●</i>Region Nürnberg · Fürth · Erlangen</span>
+      <span class="chip"><i>●</i>Offen für neue Positionen</span>
     </div>
     <div class="cta">
-      <a class="btn primary" href="#kontakt">Kontakt aufnehmen</a>
-      <!-- Lebenslauf: lade CV  - Alan Kies - Deutsch .pdf mit hoch, dann funktioniert dieser Button -->
-      <a class="btn ghost" href="CV  - Alan Kies - Deutsch .pdf">Lebenslauf (PDF)</a>
+      <a class="btn primary" href="#kontakt">Kontakt aufnehmen <span class="arrow">→</span></a>
+      <!-- Lebenslauf: lade lebenslauf.pdf mit hoch, dann funktioniert dieser Button -->
+      <a class="btn ghost" href="lebenslauf.pdf">Lebenslauf (PDF) <span class="arrow">↓</span></a>
     </div>
   </header>
 
+  <hr class="rule">
+
   <!-- ====== ÜBER MICH ====== -->
-  <section id="ueber-mich">
-    <h2>Über mich</h2>
-    <p>Ich habe 2026 meinen Bachelor im Studiengang „Global Business, Finance and Management“ an der SGH Warsaw School of Economics abgeschlossen. Mein Schwerpunkt liegt auf den Wirtschaftsbeziehungen zwischen Deutschland und Polen, sowohl im Studium als auch im studentischen Engagement.</p>
-    <p>Derzeit ziehe ich in die Region Nürnberg und suche eine Einstiegsposition, in der ich meine Kenntnisse in internationalem Business, Finanzen und deutsch-polnischer Zusammenarbeit einbringen kann.</p>
+  <section id="ueber-mich" class="reveal">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Über mich</h2></div>
+    <div class="lead">
+      <p>Ich habe 2026 meinen Bachelor im Studiengang <strong>„Global Business, Finance and Management“</strong> an der SGH Warsaw School of Economics abgeschlossen. Mein Schwerpunkt liegt auf den Wirtschaftsbeziehungen zwischen Deutschland und Polen, sowohl im Studium als auch im studentischen Engagement.</p>
+      <p>Derzeit ziehe ich in die Region Nürnberg und suche eine Einstiegsposition, in der ich meine Kenntnisse in internationalem Business, Finanzen und deutsch-polnischer Zusammenarbeit einbringen kann.</p>
+    </div>
   </section>
 
-  <!-- ====== AUSBILDUNG ====== -->
-  <section id="ausbildung">
-    <h2>Ausbildung</h2>
+  <hr class="rule">
 
-    <div class="item">
+  <!-- ====== AUSBILDUNG ====== -->
+  <section id="ausbildung" class="reveal">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Ausbildung</h2></div>
+
+    <div class="card">
       <div class="when">bis 2026</div>
       <div>
         <h3>Bachelor – Global Business, Finance and Management</h3>
@@ -133,27 +207,29 @@
       </div>
     </div>
 
-    <div class="item">
-      <div class="when">Zusatz­qualifikation</div>
+    <div class="card">
+      <div class="when">Zusatz&shy;qualifikation</div>
       <div>
-        <h3>„Management der deutsch-polnischen Wirtschaftsaktivitäten“</h3>
+        <h3>Management der deutsch-polnischen Wirtschaftsaktivitäten</h3>
         <div class="where">Deutsch-Polnisches Forum der SGH</div>
         <p>Interdisziplinäre Spezialisierung mit neun auf Deutsch absolvierten Fächern.</p>
       </div>
     </div>
 
-    <div class="highlight" style="margin-top:20px">
+    <div class="feature">
       <div class="label">Bachelorarbeit</div>
       <h3>Regionale Differenzierung der deutschen Handelsbeziehungen mit Polen – ein Vergleich der östlichen und westlichen Bundesländer 2015–2024</h3>
       <p>Betreut am Lehrstuhl für Deutschlandforschung der SGH, mit der Note „sehr gut“ verteidigt.</p>
     </div>
   </section>
 
-  <!-- ====== ERFAHRUNG ====== -->
-  <section id="erfahrung">
-    <h2>Erfahrung &amp; Engagement</h2>
+  <hr class="rule">
 
-    <div class="item">
+  <!-- ====== ERFAHRUNG ====== -->
+  <section id="erfahrung" class="reveal">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Erfahrung &amp; Engagement</h2></div>
+
+    <div class="card">
       <div class="when">Praktikum</div>
       <div>
         <h3>Praktikant</h3>
@@ -162,17 +238,17 @@
       </div>
     </div>
 
-    <div class="item">
-      <div class="when">letztes Studienjahr</div>
+    <div class="card">
+      <div class="when">Letztes Studienjahr</div>
       <div>
         <h3>Vorsitzender</h3>
-        <div class="where">Studentischer Wissenschaftskreis für polnisch-deutsche Zusammenarbeit, SGH</div>
+        <div class="where">Wissenschaftskreis für polnisch-deutsche Zusammenarbeit, SGH</div>
         <p>Leitung des Vereins, Organisation von Veranstaltungen und Kooperationen.</p>
       </div>
     </div>
 
-    <div class="item">
-      <div class="when">davor</div>
+    <div class="card">
+      <div class="when">Davor</div>
       <div>
         <h3>Stellv. Vorsitzender für Finanzen und Verwaltung</h3>
         <div class="where">Wissenschaftskreis für Investitionen und Immobilien, SGH</div>
@@ -181,31 +257,47 @@
     </div>
   </section>
 
+  <hr class="rule">
+
   <!-- ====== SPRACHEN ====== -->
-  <section id="sprachen">
-    <h2>Sprachen</h2>
+  <section id="sprachen" class="reveal">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Sprachen</h2></div>
     <div class="langs">
-      <div class="lang"><strong>Polnisch</strong><span>Muttersprache</span></div>
-      <div class="lang"><strong>Deutsch</strong><span>B2 (Goethe-Zertifikat)</span></div>
-      <div class="lang"><strong>Englisch</strong><span>[Niveau ergänzen]</span></div>
+      <div class="lang"><strong>Polnisch</strong><span>Muttersprache</span><div class="bar"><b style="width:100%"></b></div></div>
+      <div class="lang"><strong>Deutsch</strong><span>B2 · Goethe-Zertifikat</span><div class="bar"><b style="width:70%"></b></div></div>
+      <!-- Englisch: Niveau und Balkenbreite (width) anpassen -->
+      <div class="lang"><strong>Englisch</strong><span>[Niveau ergänzen]</span><div class="bar"><b style="width:75%"></b></div></div>
     </div>
   </section>
 
   <!-- ====== KONTAKT ====== -->
-  <section id="kontakt" class="contact">
-    <h2>Kontakt</h2>
-    <p>Ich freue mich über Nachrichten zu Jobangeboten, Kooperationen oder einfach zum Austausch.</p>
-    <p>
-      E-Mail: <a href="mailto:DEINE@EMAIL.DE">DEINE@EMAIL.DE</a><br>
-      LinkedIn: <a href="https://www.linkedin.com/in/DEIN-PROFIL">linkedin.com/in/DEIN-PROFIL</a>
-    </p>
+  <section id="kontakt" class="reveal">
+    <div class="contact-box">
+      <div class="eyebrow" style="justify-content:center">Kontakt</div>
+      <h2 class="chrome" style="margin-top:14px">Lassen Sie uns sprechen.</h2>
+      <p>Ich freue mich über Nachrichten zu Jobangeboten, Kooperationen oder einfach zum fachlichen Austausch.</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:DEINE@EMAIL.DE">E-Mail schreiben <span class="arrow">→</span></a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/DEIN-PROFIL">LinkedIn <span class="arrow">↗</span></a>
+      </div>
+    </div>
   </section>
 
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Alan Kieś</div>
+  <div class="wrap">
+    <span>© 2026 Alan Kieś</span>
+    <span class="mono">alankies.de</span>
+  </div>
 </footer>
 
+<script>
+  // sanftes Einblenden der Abschnitte beim Scrollen
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
