@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alan Kieś</title>
+<meta name="description" content="Alan Kieś – Wirtschaftsabsolvent der SGH Warschau mit Schwerpunkt deutsch-polnische Wirtschaftsbeziehungen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f5f0; --surface:#ffffff; --text:#1d1f23; --muted:#5d6370;
+    --line:#e3dfd6; --accent:#9c2f2f; --accent-soft:#f3e4e1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#15171a; --surface:#1d2024; --text:#ecebe7; --muted:#a3a8b1;
+      --line:#2e3238; --accent:#e07a6e; --accent-soft:#33221f;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:Inter,system-ui,sans-serif; font-size:17px; line-height:1.65;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* ---------- Navigation ---------- */
+  nav{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 88%,transparent);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+  nav .logo{font-family:Fraunces,serif;font-weight:650;font-size:20px;color:var(--text);text-decoration:none}
+  nav ul{list-style:none;display:flex;gap:22px}
+  nav a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500}
+  nav a:hover{color:var(--accent)}
+  @media (max-width:560px){ nav ul{display:none} }
+
+  /* ---------- Kopfbereich ---------- */
+  header{padding:80px 0 56px}
+  .avatar{width:96px;height:96px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
+          display:grid;place-items:center;font-family:Fraunces,serif;font-size:36px;font-weight:650;margin-bottom:28px;
+          object-fit:cover}
+  h1{font-family:Fraunces,serif;font-weight:650;font-size:clamp(38px,7vw,56px);line-height:1.08;letter-spacing:-.01em}
+  .tagline{font-size:20px;color:var(--muted);margin-top:16px;max-width:600px}
+  .meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+  .chip{font-size:14px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--surface)}
+  .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.ghost{border:1px solid var(--line);color:var(--text);background:var(--surface)}
+  .btn:hover{opacity:.88}
+
+  /* ---------- Abschnitte ---------- */
+  section{padding:48px 0;border-top:1px solid var(--line)}
+  h2{font-family:Fraunces,serif;font-weight:650;font-size:28px;margin-bottom:22px}
+  p + p{margin-top:14px}
+  .item{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:16px 0}
+  .item + .item{border-top:1px dashed var(--line)}
+  .when{color:var(--muted);font-size:15px;padding-top:2px}
+  .item h3{font-size:17px;font-weight:600}
+  .item .where{color:var(--accent);font-weight:500;font-size:15px}
+  .item p{color:var(--muted);font-size:16px;margin-top:6px}
+  @media (max-width:560px){ .item{grid-template-columns:1fr;gap:4px} }
+
+  .highlight{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);
+             border-radius:8px;padding:22px 24px}
+  .highlight .label{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:600}
+  .highlight h3{font-family:Fraunces,serif;font-weight:500;font-size:21px;line-height:1.35;margin:8px 0 10px}
+  .highlight p{color:var(--muted);font-size:16px}
+
+  .langs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+  .lang{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+  .lang strong{display:block}
+  .lang span{color:var(--muted);font-size:15px}
+
+  .contact a{color:var(--accent);font-weight:500}
+  footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">Alan Kieś</a>
+    <ul>
+      <li><a href="#ueber-mich">Über mich</a></li>
+      <li><a href="#ausbildung">Ausbildung</a></li>
+      <li><a href="#erfahrung">Erfahrung</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ====== KOPFBEREICH ====== -->
+  <header>
+    <!-- Foto: Ersetze die nächste Zeile durch  <img class="avatar" src="foto.jpg" alt="Alan Kieś">  -->
+    <div class="avatar">AK</div>
+    <h1>Alan Kieś</h1>
+    <p class="tagline">Wirtschaftsabsolvent der SGH Warschau mit Schwerpunkt auf internationalem Business und deutsch-polnischen Wirtschaftsbeziehungen.</p>
+    <div class="meta">
+      <span class="chip">📍 Region Nürnberg / Fürth / Erlangen</span>
+      <span class="chip">🇵🇱 🇩🇪 Deutsch-polnisch</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#kontakt">Kontakt aufnehmen</a>
+      <!-- Lebenslauf: lade lebenslauf.pdf mit hoch, dann funktioniert dieser Button -->
+      <a class="btn ghost" href="lebenslauf.pdf">Lebenslauf (PDF)</a>
+    </div>
+  </header>
+
+  <!-- ====== ÜBER MICH ====== -->
+  <section id="ueber-mich">
+    <h2>Über mich</h2>
+    <p>Ich habe 2026 meinen Bachelor im Studiengang „Global Business, Finance and Management“ an der SGH Warsaw School of Economics abgeschlossen. Mein Schwerpunkt liegt auf den Wirtschaftsbeziehungen zwischen Deutschland und Polen, sowohl im Studium als auch im studentischen Engagement.</p>
+    <p>Derzeit ziehe ich in die Region Nürnberg und suche eine Einstiegsposition, in der ich meine Kenntnisse in internationalem Business, Finanzen und deutsch-polnischer Zusammenarbeit einbringen kann.</p>
+  </section>
+
+  <!-- ====== AUSBILDUNG ====== -->
+  <section id="ausbildung">
+    <h2>Ausbildung</h2>
+
+    <div class="item">
+      <div class="when">bis 2026</div>
+      <div>
+        <h3>Bachelor – Global Business, Finance and Management</h3>
+        <div class="where">SGH Warsaw School of Economics</div>
+        <p>Spezialisierung: Governance, internationales Business und deutsch-polnisches Wirtschaftsmanagement.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="when">Zusatz­qualifikation</div>
+      <div>
+        <h3>„Management der deutsch-polnischen Wirtschaftsaktivitäten“</h3>
+        <div class="where">Deutsch-Polnisches Forum der SGH</div>
+        <p>Interdisziplinäre Spezialisierung mit neun auf Deutsch absolvierten Fächern.</p>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:20px">
+      <div class="label">Bachelorarbeit</div>
+      <h3>Regionale Differenzierung der deutschen Handelsbeziehungen mit Polen – ein Vergleich der östlichen und westlichen Bundesländer 2015–2024</h3>
+      <p>Betreut am Lehrstuhl für Deutschlandforschung der SGH, mit der Note „sehr gut“ verteidigt.</p>
+    </div>
+  </section>
+
+  <!-- ====== ERFAHRUNG ====== -->
+  <section id="erfahrung">
+    <h2>Erfahrung &amp; Engagement</h2>
+
+    <div class="item">
+      <div class="when">Praktikum</div>
+      <div>
+        <h3>Praktikant</h3>
+        <div class="where">CBRE</div>
+        <p><!-- Hier 1–2 Sätze: Abteilung, Aufgaben, Zeitraum --> Kurze Beschreibung der Aufgaben ergänzen.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="when">letztes Studienjahr</div>
+      <div>
+        <h3>Vorsitzender</h3>
+        <div class="where">Studentischer Wissenschaftskreis für polnisch-deutsche Zusammenarbeit, SGH</div>
+        <p>Leitung des Vereins, Organisation von Veranstaltungen und Kooperationen.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="when">davor</div>
+      <div>
+        <h3>Stellv. Vorsitzender für Finanzen und Verwaltung</h3>
+        <div class="where">Wissenschaftskreis für Investitionen und Immobilien, SGH</div>
+        <p>Verantwortung für Finanzen und Organisation des Vereins.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SPRACHEN ====== -->
+  <section id="sprachen">
+    <h2>Sprachen</h2>
+    <div class="langs">
+      <div class="lang"><strong>Polnisch</strong><span>Muttersprache</span></div>
+      <div class="lang"><strong>Deutsch</strong><span>B2 (Goethe-Zertifikat)</span></div>
+      <div class="lang"><strong>Englisch</strong><span>[Niveau ergänzen]</span></div>
+    </div>
+  </section>
+
+  <!-- ====== KONTAKT ====== -->
+  <section id="kontakt" class="contact">
+    <h2>Kontakt</h2>
+    <p>Ich freue mich über Nachrichten zu Jobangeboten, Kooperationen oder einfach zum Austausch.</p>
+    <p>
+      E-Mail: <a href="mailto:DEINE@EMAIL.DE">DEINE@EMAIL.DE</a><br>
+      LinkedIn: <a href="https://www.linkedin.com/in/DEIN-PROFIL">linkedin.com/in/DEIN-PROFIL</a>
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Alan Kieś</div>
+</footer>
+
+</body>
+</html>
