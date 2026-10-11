@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galerie – Alan Kieś</title>
+<meta name="description" content="Fotos von Alan Kieś – Veranstaltungen, Studium und Engagement.">
+<meta name="theme-color" content="#08090a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo chrome" href="index.html">ALAN KIEŚ<span class="dot">.</span></a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="index.html#ueber-mich" data-i18n="nav_about">Über mich</a></li>
+        <li><a href="index.html#ausbildung" data-i18n="nav_edu">Ausbildung</a></li>
+        <li><a href="index.html#erfahrung" data-i18n="nav_exp">Erfahrung</a></li>
+        <li><a href="galerie.html" aria-current="page" data-i18n="nav_gallery">Galerie</a></li>
+        <li><a href="index.html#kontakt" data-i18n="nav_contact">Kontakt</a></li>
+      </ul>
+      <div class="lang-switch" role="group" aria-label="Sprache / Language / Język">
+        <button type="button" data-lang="de" aria-pressed="true">DE</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="pl" aria-pressed="false">PL</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="page-head">
+    <div class="eyebrow" data-i18n="g_eye">Galerie</div>
+    <h1 class="chrome" data-i18n="g_h">Momente &amp; Projekte</h1>
+    <p data-i18n="g_p">Eindrücke aus Studium, Veranstaltungen und studentischem Engagement.</p>
+  </header>
+
+  <div class="gallery" id="gallery"></div>
+</main>
+
+<!-- Vollbildansicht -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Schließen">✕</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Zurück">←</button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Weiter">→</button>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Alan Kieś</span>
+    <div class="legal">
+      <a href="index.html" data-i18n="ft_home">Startseite</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="impressum.html#datenschutz" data-i18n="ft_privacy">Datenschutz</a>
+    </div>
+    <span class="mono">alankies.de</span>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   FOTOS HIER EINTRAGEN
+   1. Foto in den Ordner "galerie/" im Repository hochladen
+      (Dateiname ohne Leerzeichen, z. B. sprachbruecken-2026.jpg)
+   2. Unten einen neuen Block { ... } hinzufügen
+   - date: optional, z. B. "03.2024" (oder "" lassen)
+   - de / en / pl: Bildunterschrift in der jeweiligen Sprache
+   Die Reihenfolge hier = Reihenfolge auf der Seite.
+   ========================================================= */
+var PHOTOS = [
+  {
+    src: "alan-kies-foto.png",
+    date: "2026",
+    de: "Bewerbungsfoto",
+    en: "Professional portrait",
+    pl: "Zdjęcie portretowe"
+  }
+  // ,{
+  //   src: "galerie/sprachbruecken-2026.jpg",
+  //   date: "05.2026",
+  //   de: "Deutsch-polnische Sprachbrücken an der SGH",
+  //   en: "German-Polish “Sprachbrücken” language exchange at SGH",
+  //   pl: "Polsko-niemieckie spotkania językowe „Sprachbrücken” w SGH"
+  // }
+];
+
+window.I18N = {
+  en: {
+    _title: "Gallery – Alan Kieś",
+    nav_about: "About", nav_edu: "Education", nav_exp: "Experience", nav_gallery: "Gallery", nav_contact: "Contact",
+    g_eye: "Gallery", g_h: "Moments &amp; Projects",
+    g_p: "Impressions from my studies, events and student activities.",
+    g_empty: "No photos yet.",
+    ft_home: "Home", ft_privacy: "Privacy"
+  },
+  pl: {
+    _title: "Galeria – Alan Kieś",
+    nav_about: "O mnie", nav_edu: "Wykształcenie", nav_exp: "Doświadczenie", nav_gallery: "Galeria", nav_contact: "Kontakt",
+    g_eye: "Galeria", g_h: "Chwile i projekty",
+    g_p: "Wrażenia ze studiów, wydarzeń i działalności studenckiej.",
+    g_empty: "Na razie brak zdjęć.",
+    ft_home: "Strona główna", ft_privacy: "Prywatność"
+  },
+  de: { g_empty: "Noch keine Fotos vorhanden." }
+};
+
+(function () {
+  var grid = document.getElementById('gallery');
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-cap');
+  var current = 0;
+
+  function lang() { return window.currentLang || 'de'; }
+  function caption(p) { return p[lang()] || p.de || ''; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function render() {
+    if (!PHOTOS.length) {
+      var t = (window.I18N[lang()] || {}).g_empty || window.I18N.de.g_empty;
+      grid.innerHTML = '<div class="empty">' + t + '</div>';
+      return;
+    }
+    grid.innerHTML = PHOTOS.map(function (p, i) {
+      return '<figure class="shot" tabindex="0" data-i="' + i + '">' +
+        '<img src="' + esc(p.src) + '" alt="' + esc(caption(p)) + '" loading="lazy">' +
+        '<figcaption>' + (p.date ? '<b>' + esc(p.date) + '</b>' : '') + esc(caption(p)) + '</figcaption>' +
+        '</figure>';
+    }).join('');
+  }
+
+  function show(i) {
+    current = (i + PHOTOS.length) % PHOTOS.length;
+    var p = PHOTOS[current];
+    lbImg.src = p.src; lbImg.alt = caption(p);
+    lbCap.textContent = (p.date ? p.date + ' · ' : '') + caption(p);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function hide() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+  grid.addEventListener('click', function (e) {
+    var f = e.target.closest('.shot'); if (f) show(+f.getAttribute('data-i'));
+  });
+  grid.addEventListener('keydown', function (e) {
+    var f = e.target.closest('.shot'); if (f && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); show(+f.getAttribute('data-i')); }
+  });
+  document.getElementById('lb-close').onclick = hide;
+  document.getElementById('lb-prev').onclick = function () { show(current - 1); };
+  document.getElementById('lb-next').onclick = function () { show(current + 1); };
+  lb.addEventListener('click', function (e) { if (e.target === lb) hide(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') hide();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+
+  document.addEventListener('langchange', render);
+  render();
+})();
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>

@@ -9,275 +9,197 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --black:#08090a;
-    --panel:#101214;
-    --panel-2:#15181b;
-    --white:#f5f6f7;
-    --grey:#9aa1a9;
-    --line:#23272b;
-    --emerald:#10b981;
-    --emerald-deep:#047857;
-    --emerald-glow:rgba(16,185,129,.18);
-    --chrome:linear-gradient(135deg,#f9fafb 0%,#9ca3af 22%,#e5e7eb 40%,#6b7280 58%,#f3f4f6 76%,#a1a1aa 100%);
-    --chrome-line:linear-gradient(90deg,transparent,#d1d5db 30%,#6b7280 50%,#e5e7eb 70%,transparent);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--black); color:var(--white);
-    font-family:Inter,system-ui,sans-serif; font-size:16.5px; line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-    background-image:
-      radial-gradient(ellipse 60% 40% at 85% -5%, var(--emerald-glow), transparent 70%),
-      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size:auto, 56px 56px, 56px 56px;
-    background-attachment:fixed;
-  }
-  ::selection{background:var(--emerald);color:var(--black)}
-  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
-  .mono{font-family:"JetBrains Mono",monospace}
-
-  /* chrome text */
-  .chrome{
-    background:var(--chrome); background-size:200% 200%;
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    animation:shine 9s ease-in-out infinite;
-  }
-  @keyframes shine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-  @media (prefers-reduced-motion:reduce){.chrome{animation:none}}
-
-  /* chrome divider */
-  .rule{height:1px;background:var(--chrome-line);opacity:.55;border:0}
-
-  /* ---------- Navigation ---------- */
-  nav{position:sticky;top:0;z-index:10;
-      background:rgba(8,9,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:62px}
-  .logo{font-family:Sora,sans-serif;font-weight:700;font-size:18px;letter-spacing:.14em;text-decoration:none}
-  .logo .dot{color:var(--emerald);-webkit-text-fill-color:var(--emerald)}
-  nav ul{list-style:none;display:flex;gap:28px}
-  nav a{color:var(--grey);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
-  nav a:hover{color:var(--emerald)}
-  @media (max-width:600px){ nav ul{display:none} }
-
-  /* ---------- Hero ---------- */
-  header{padding:96px 0 72px;position:relative}
-  .avatar-ring{width:104px;height:104px;border-radius:50%;padding:2px;background:var(--chrome);margin-bottom:34px}
-  .avatar{width:100%;height:100%;border-radius:50%;background:var(--panel);display:grid;place-items:center;
-          font-family:Sora,sans-serif;font-weight:600;font-size:34px;color:var(--white);object-fit:cover}
-  .eyebrow{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--emerald);display:flex;align-items:center;gap:10px}
-  .eyebrow::before{content:"";width:26px;height:1px;background:var(--emerald)}
-  h1{font-family:Sora,sans-serif;font-weight:700;font-size:clamp(46px,9vw,84px);line-height:1;letter-spacing:-.035em;margin:18px 0 22px}
-  .tagline{font-size:19px;color:var(--grey);max-width:620px;font-weight:400}
-  .tagline strong{color:var(--white);font-weight:500}
-  .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
-  .chip{font-size:13px;padding:6px 14px;border-radius:999px;color:var(--white);
-        background:var(--panel);border:1px solid var(--line)}
-  .chip i{font-style:normal;color:var(--emerald);margin-right:6px}
-  .cta{margin-top:38px;display:flex;flex-wrap:wrap;gap:14px}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:10px;
-       font-weight:600;font-size:14.5px;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
-  .btn.primary{background:var(--emerald);color:var(--black);box-shadow:0 0 0 0 var(--emerald-glow)}
-  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(16,185,129,.55)}
-  .btn.ghost{color:var(--white);position:relative;background:var(--panel);isolation:isolate}
-  .btn.ghost::before{content:"";position:absolute;inset:0;border-radius:10px;padding:1px;background:var(--chrome);
-       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:-1}
-  .btn.ghost:hover{transform:translateY(-2px)}
-  .arrow{transition:transform .2s}
-  .btn:hover .arrow{transform:translateX(3px)}
-
-  /* ---------- Sections ---------- */
-  section{padding:72px 0}
-  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px}
-  .sec-num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--emerald)}
-  h2{font-family:Sora,sans-serif;font-weight:600;font-size:30px;letter-spacing:-.02em}
-  .lead p{color:var(--grey);font-size:17.5px}
-  .lead p strong{color:var(--white);font-weight:500}
-  .lead p + p{margin-top:16px}
-
-  /* timeline cards */
-  .card{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:14px;
-        padding:24px 26px;display:grid;grid-template-columns:140px 1fr;gap:22px;transition:border-color .25s,transform .25s}
-  .card + .card{margin-top:14px}
-  .card:hover{border-color:rgba(16,185,129,.45);transform:translateY(-2px)}
-  .when{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--grey);text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
-  .card h3{font-family:Sora,sans-serif;font-size:17.5px;font-weight:600;letter-spacing:-.01em}
-  .where{color:var(--emerald);font-size:14.5px;font-weight:500;margin-top:2px}
-  .card p{color:var(--grey);font-size:15.5px;margin-top:8px}
-  @media (max-width:600px){ .card{grid-template-columns:1fr;gap:6px} }
-
-  /* thesis highlight with chrome border */
-  .feature{margin-top:22px;position:relative;border-radius:16px;padding:30px 30px 28px;background:var(--panel);isolation:isolate;overflow:hidden}
-  .feature::before{content:"";position:absolute;inset:0;border-radius:16px;padding:1px;background:var(--chrome);
-       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:-1}
-  .feature::after{content:"";position:absolute;right:-80px;top:-80px;width:220px;height:220px;border-radius:50%;
-       background:radial-gradient(circle,rgba(16,185,129,.22),transparent 70%);z-index:-1}
-  .feature .label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--emerald)}
-  .feature h3{font-family:Sora,sans-serif;font-weight:400;font-size:clamp(19px,3vw,23px);line-height:1.4;margin:12px 0 12px;letter-spacing:-.01em}
-  .feature p{color:var(--grey);font-size:15.5px}
-
-  /* languages */
-  .langs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
-  .lang{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
-  .lang strong{font-family:Sora,sans-serif;font-weight:600;font-size:18px;display:block}
-  .lang span{color:var(--grey);font-size:14.5px}
-  .bar{height:3px;background:var(--line);border-radius:3px;margin-top:16px;overflow:hidden}
-  .bar b{display:block;height:100%;background:linear-gradient(90deg,var(--emerald-deep),var(--emerald))}
-
-  /* contact */
-  .contact-box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:40px 34px;text-align:center}
-  .contact-box h2{font-size:clamp(28px,5vw,40px);margin-bottom:14px}
-  .contact-box p{color:var(--grey);max-width:480px;margin:0 auto}
-  .links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}
-
-  footer{padding:34px 0 44px;color:var(--grey);font-size:13px}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  footer a{color:var(--grey);text-decoration:none}
-  footer a:hover{color:var(--emerald)}
-
-  /* reveal on scroll */
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <a class="logo chrome" href="#">ALAN KIEŚ<span class="dot">.</span></a>
-    <ul>
-      <li><a href="#ueber-mich">Über mich</a></li>
-      <li><a href="#ausbildung">Ausbildung</a></li>
-      <li><a href="#erfahrung">Erfahrung</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-    </ul>
+    <a class="logo chrome" href="index.html">ALAN KIEŚ<span class="dot">.</span></a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="#ueber-mich" data-i18n="nav_about">Über mich</a></li>
+        <li><a href="#ausbildung" data-i18n="nav_edu">Ausbildung</a></li>
+        <li><a href="#erfahrung" data-i18n="nav_exp">Erfahrung</a></li>
+        <li><a href="galerie.html" data-i18n="nav_gallery">Galerie</a></li>
+        <li><a href="#kontakt" data-i18n="nav_contact">Kontakt</a></li>
+      </ul>
+      <div class="lang-switch" role="group" aria-label="Sprache / Language / Język">
+        <button type="button" data-lang="de" aria-pressed="true">DE</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="pl" aria-pressed="false">PL</button>
+      </div>
+    </div>
   </div>
 </nav>
 
 <main class="wrap">
 
   <!-- ====== HERO ====== -->
-  <header>
-    <div class="avatar-ring">
-      <img class="avatar" src="alan-kies-foto.png" alt="Alan Kieś">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">International Business · DE ⇄ PL</div>
+      <h1 class="chrome">Alan Kieś</h1>
+      <p class="tagline" data-i18n="tagline">Wirtschaftsabsolvent der <strong>SGH Warschau</strong> mit Schwerpunkt auf internationalem Business und <strong>deutsch-polnischen Wirtschaftsbeziehungen</strong>.</p>
+      <div class="meta">
+        <span class="chip"><i>●</i><span data-i18n="chip_region">Region Nürnberg · Fürth · Erlangen</span></span>
+        <span class="chip"><i>●</i><span data-i18n="chip_open">Offen für neue Positionen</span></span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#kontakt"><span data-i18n="btn_contact">Kontakt aufnehmen</span> <span class="arrow">→</span></a>
+        <a class="btn ghost" href="cv-alan-kies-deutsch.pdf" target="_blank" rel="noopener"><span data-i18n="btn_cv">Lebenslauf (PDF)</span> <span class="arrow">↓</span></a>
+      </div>
     </div>
-    <div class="eyebrow">International Business · DE ⇄ PL</div>
-    <h1 class="chrome">Alan Kieś</h1>
-    <p class="tagline">Wirtschaftsabsolvent der <strong>SGH Warschau</strong> mit Schwerpunkt auf internationalem Business und <strong>deutsch-polnischen Wirtschaftsbeziehungen</strong>.</p>
-    <div class="meta">
-      <span class="chip"><i>●</i>Region Nürnberg · Fürth · Erlangen</span>
-      <span class="chip"><i>●</i>Offen für neue Positionen</span>
-    </div>
-    <div class="cta">
-      <a class="btn primary" href="#kontakt">Kontakt aufnehmen <span class="arrow">→</span></a>
-      <a class="btn ghost" href="cv-alan-kies-deutsch.pdf" target="_blank" rel="noopener">Lebenslauf (PDF) <span class="arrow">↓</span></a>
+    <div class="portrait">
+      <img src="alan-kies-foto.png" alt="Alan Kieś" width="778" height="1000">
     </div>
   </header>
 
   <hr class="rule">
 
-  <!-- ====== ÜBER MICH ====== -->
+  <!-- ====== 01 ÜBER MICH ====== -->
   <section id="ueber-mich" class="reveal">
-    <div class="sec-head"><span class="sec-num">01</span><h2>Über mich</h2></div>
+    <div class="sec-head"><span class="sec-num">01</span><h2 data-i18n="about_h">Über mich</h2></div>
     <div class="lead">
-      <p>Ich habe 2026 meinen Bachelor im Studiengang <strong>„Global Business, Finance and Management“</strong> an der SGH Warsaw School of Economics abgeschlossen. Mein Schwerpunkt liegt auf den Wirtschaftsbeziehungen zwischen Deutschland und Polen, sowohl im Studium als auch im studentischen Engagement.</p>
-      <p>Derzeit ziehe ich in die Region Nürnberg und suche eine Einstiegsposition, in der ich meine Kenntnisse in internationalem Business, Finanzen und deutsch-polnischer Zusammenarbeit einbringen kann.</p>
+      <p data-i18n="about_p1">Ich habe 2026 meinen Bachelor im Studiengang <strong>„Global Business, Finance and Management (Governance)“</strong> an der SGH Warsaw School of Economics abgeschlossen. Mein Schwerpunkt liegt auf den Wirtschaftsbeziehungen zwischen Deutschland und Polen – im Studium, in meiner Abschlussarbeit und im studentischen Engagement.</p>
+      <p data-i18n="about_p2">Praktische Erfahrung habe ich in den Bereichen <strong>Finanzmanagement, Rechnungswesen und Verwaltung</strong> gesammelt – im Praktikum bei CBRE und als Vorstandsmitglied zweier studentischer Vereine an der SGH.</p>
+      <p data-i18n="about_p3">Derzeit ziehe ich in die Region Nürnberg und suche eine Einstiegsposition, in der ich meine Kenntnisse in internationalem Business, Finanzen und deutsch-polnischer Zusammenarbeit einbringen kann.</p>
     </div>
   </section>
 
   <hr class="rule">
 
-  <!-- ====== AUSBILDUNG ====== -->
+  <!-- ====== 02 AUSBILDUNG ====== -->
   <section id="ausbildung" class="reveal">
-    <div class="sec-head"><span class="sec-num">02</span><h2>Ausbildung</h2></div>
+    <div class="sec-head"><span class="sec-num">02</span><h2 data-i18n="edu_h">Ausbildung</h2></div>
 
     <div class="card">
-      <div class="when">bis 2026</div>
+      <div class="when">2023 – 2026</div>
       <div>
-        <h3>Bachelor – Global Business, Finance and Management</h3>
+        <h3 data-i18n="edu1_t">Bachelor – Global Business, Finance and Management (Governance)</h3>
         <div class="where">SGH Warsaw School of Economics</div>
-        <p>Spezialisierung: Governance, internationales Business und deutsch-polnisches Wirtschaftsmanagement.</p>
+        <p data-i18n="edu1_d">Vollzeit-Bachelorstudium mit Spezialisierung in internationalem Business und deutsch-polnischem Wirtschaftsmanagement.</p>
       </div>
     </div>
 
     <div class="card">
-      <div class="when">Zusatz&shy;qualifikation</div>
+      <div class="when" data-i18n="edu2_when">Zusatz&shy;qualifikation</div>
       <div>
-        <h3>Management der deutsch-polnischen Wirtschaftsaktivitäten</h3>
-        <div class="where">Deutsch-Polnisches Forum der SGH</div>
-        <p>Interdisziplinäre Spezialisierung mit neun auf Deutsch absolvierten Fächern.</p>
+        <h3 data-i18n="edu2_t">Management der deutsch-polnischen Wirtschaftsaktivitäten</h3>
+        <div class="where" data-i18n="edu2_w">Deutsch-Polnisches Forum der SGH</div>
+        <p data-i18n="edu2_d">Interdisziplinäre Spezialisierung mit neun auf Deutsch absolvierten Fächern.</p>
       </div>
     </div>
 
-    <div class="feature">
-      <div class="label">Bachelorarbeit</div>
-      <h3>Regionale Differenzierung der deutschen Handelsbeziehungen mit Polen – ein Vergleich der östlichen und westlichen Bundesländer 2015–2024</h3>
-      <p>Betreut am Lehrstuhl für Deutschlandforschung der SGH, mit der Note „sehr gut“ verteidigt.</p>
+    <div class="card">
+      <div class="when">2019 – 2023</div>
+      <div>
+        <h3 data-i18n="edu3_t">Allgemeine Hochschulreife</h3>
+        <div class="where" data-i18n="edu3_w">II. Allgemeinbildendes Lyzeum in Chełm</div>
+      </div>
+    </div>
+
+    <div class="feature chrome-border">
+      <div class="label" data-i18n="thesis_l">Bachelorarbeit</div>
+      <h3 data-i18n="thesis_t">Regionale Differenzierung der deutschen Handelsbeziehungen mit Polen – ein Vergleich der östlichen und westlichen Bundesländer 2015–2024</h3>
+      <p data-i18n="thesis_d">Betreut am Lehrstuhl für deutsche Wirtschaftsforschung der SGH, mit der Note „sehr gut“ (5) verteidigt.</p>
     </div>
   </section>
 
   <hr class="rule">
 
-  <!-- ====== ERFAHRUNG ====== -->
+  <!-- ====== 03 ERFAHRUNG ====== -->
   <section id="erfahrung" class="reveal">
-    <div class="sec-head"><span class="sec-num">03</span><h2>Erfahrung &amp; Engagement</h2></div>
+    <div class="sec-head"><span class="sec-num">03</span><h2 data-i18n="exp_h">Erfahrung &amp; Engagement</h2></div>
 
     <div class="card">
-      <div class="when">Praktikum</div>
+      <div class="when">10.2025 – 07.2026</div>
       <div>
-        <h3>Praktikant</h3>
-        <div class="where">CBRE</div>
-        <p><!-- Hier 1–2 Sätze: Abteilung, Aufgaben, Zeitraum --> Kurze Beschreibung der Aufgaben ergänzen.</p>
+        <h3 data-i18n="exp1_t">Vorsitzender</h3>
+        <div class="where" data-i18n="exp1_w">Studentischer Verein für deutsch-polnische Zusammenarbeit an der SGH (SKN WPN)</div>
+        <p data-i18n="exp1_d">Leitung des Vereins, Organisation von Veranstaltungen und Kooperationen – darunter die deutsch-polnischen <strong>Sprachbrücken</strong> an der SGH.</p>
       </div>
     </div>
 
     <div class="card">
-      <div class="when">Letztes Studienjahr</div>
+      <div class="when">07 – 08.2025</div>
       <div>
-        <h3>Vorsitzender</h3>
-        <div class="where">Studentischer Verein für deutsch-polnisch Zusammenarbeit an der SGH</div>
-        <p>Leitung des Vereins, Organisation von Veranstaltungen und Kooperationen.</p>
+        <h3 data-i18n="exp2_t">Sommerpraktikum – Property Management</h3>
+        <div class="where">CBRE · <span data-i18n="warsaw">Warschau</span></div>
+        <!-- Tipp: hier noch 1–2 konkrete Aufgaben ergänzen -->
+        <p data-i18n="exp2_d">Praktikum in der Abteilung Property Management eines der weltweit führenden Immobiliendienstleister.</p>
       </div>
     </div>
 
     <div class="card">
-      <div class="when">Davor</div>
+      <div class="when">05.2024 – 10.2025</div>
       <div>
-        <h3>Stellv. Vorsitzender für Finanzen und Verwaltung</h3>
-        <div class="where">Studentischer Verein für Investitionen und Immobilien an der SGH</div>
-        <p>Verantwortung für Finanzen und Organisation des Vereins.</p>
+        <h3 data-i18n="exp3_t">Stellv. Vorsitzender für Finanzen und Verwaltung</h3>
+        <div class="where" data-i18n="exp3_w">Studentischer Verein für Investitionen und Immobilien an der SGH</div>
+        <p data-i18n="exp3_d">Verantwortung für Finanzen und Verwaltung des Vereins.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="when">03.2024</div>
+      <div>
+        <h3 data-i18n="exp4_t">Leiter des Logistikteams</h3>
+        <div class="where">Real Estate Case Day 2024</div>
+        <p data-i18n="exp4_d">Koordination der Logistik und des Ablaufs der Veranstaltung.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="when">11.2023 – 03.2024</div>
+      <div>
+        <h3 data-i18n="exp5_t">Grafikdesigner</h3>
+        <div class="where">Real Estate Conference 2024</div>
+        <p data-i18n="exp5_d">Gestaltung von Grafiken und visuellen Materialien für die Konferenz.</p>
       </div>
     </div>
   </section>
 
   <hr class="rule">
 
-  <!-- ====== SPRACHEN ====== -->
+  <!-- ====== 04 ERFOLGE ====== -->
+  <section id="erfolge" class="reveal">
+    <div class="sec-head"><span class="sec-num">04</span><h2 data-i18n="aw_h">Erfolge &amp; Zertifikate</h2></div>
+    <div class="awards">
+      <div class="award"><div class="yr">06.2025</div><strong data-i18n="aw1_t">Goethe-Zertifikat B2</strong><span data-i18n="aw1_d">Deutsch</span></div>
+      <div class="award"><div class="yr">2021 · 2022</div><strong data-i18n="aw2_t">Zweimaliger Finalist der Geografie-Olympiade</strong><span data-i18n="aw2_d">Landesweiter Schülerwettbewerb in Polen</span></div>
+      <div class="award"><div class="yr">2021 · 2022</div><strong data-i18n="aw3_t">HSK 1 und HSK 2</strong><span data-i18n="aw3_d">Sprachzertifikate Chinesisch</span></div>
+      <div class="award"><div class="yr">—</div><strong data-i18n="aw4_t">Führerschein Klasse B</strong><span data-i18n="aw4_d">Pkw</span></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ====== 05 SPRACHEN ====== -->
   <section id="sprachen" class="reveal">
-    <div class="sec-head"><span class="sec-num">04</span><h2>Sprachen</h2></div>
+    <div class="sec-head"><span class="sec-num">05</span><h2 data-i18n="lang_h">Sprachen</h2></div>
     <div class="langs">
-      <div class="lang"><strong>Polnisch</strong><span>Muttersprache</span><div class="bar"><b style="width:100%"></b></div></div>
-      <div class="lang"><strong>Deutsch</strong><span>B2 · Goethe-Zertifikat</span><div class="bar"><b style="width:70%"></b></div></div>
-      <!-- Englisch: Niveau und Balkenbreite (width) anpassen -->
-      <div class="lang"><strong>Englisch</strong><span>[Niveau ergänzen]</span><div class="bar"><b style="width:75%"></b></div></div>
+      <div class="lang"><strong data-i18n="l_pl">Polnisch</strong><span data-i18n="l_pl_d">Muttersprache</span><div class="bar"><b style="width:100%"></b></div></div>
+      <div class="lang"><strong data-i18n="l_de">Deutsch</strong><span data-i18n="l_de_d">B2/C1 · Goethe-Zertifikat B2</span><div class="bar"><b style="width:78%"></b></div></div>
+      <div class="lang"><strong data-i18n="l_en">Englisch</strong><span>C1</span><div class="bar"><b style="width:85%"></b></div></div>
+      <div class="lang"><strong data-i18n="l_zh">Chinesisch</strong><span>A2 · HSK 2</span><div class="bar"><b style="width:30%"></b></div></div>
     </div>
   </section>
 
   <!-- ====== KONTAKT ====== -->
   <section id="kontakt" class="reveal">
     <div class="contact-box">
-      <div class="eyebrow" style="justify-content:center">Kontakt</div>
-      <h2 class="chrome" style="margin-top:14px">Lassen Sie uns sprechen.</h2>
-      <p>Ich freue mich über Nachrichten zu Jobangeboten, Kooperationen oder einfach zum fachlichen Austausch.</p>
+      <div class="eyebrow" style="justify-content:center" data-i18n="ct_eye">Kontakt</div>
+      <h2 class="chrome" data-i18n="ct_h">Lassen Sie uns sprechen.</h2>
+      <p data-i18n="ct_p">Ich freue mich über Nachrichten zu Jobangeboten, Kooperationen oder einfach zum fachlichen Austausch.</p>
       <div class="links">
-        <a class="btn primary" href="mailto:DEINE@EMAIL.DE">E-Mail schreiben <span class="arrow">→</span></a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/DEIN-PROFIL">LinkedIn <span class="arrow">↗</span></a>
+        <a class="btn primary" href="mailto:alan.anthony.kies@gmail.com"><span data-i18n="ct_mail">E-Mail schreiben</span> <span class="arrow">→</span></a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/alan-kies" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
       </div>
+      <div class="phones">
+        <a class="phone" href="tel:+4915221983088"><span class="cc">DE</span><span class="num">+49 1522 1983088</span></a>
+        <a class="phone" href="tel:+48515926177"><span class="cc">PL</span><span class="num">+48 515 926 177</span></a>
+      </div>
+      <p class="mail-plain"><a href="mailto:alan.anthony.kies@gmail.com">alan.anthony.kies@gmail.com</a></p>
     </div>
   </section>
 
@@ -286,16 +208,125 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Alan Kieś</span>
+    <div class="legal">
+      <a href="galerie.html" data-i18n="nav_gallery">Galerie</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="impressum.html#datenschutz" data-i18n="ft_privacy">Datenschutz</a>
+    </div>
     <span class="mono">alankies.de</span>
   </div>
 </footer>
 
 <script>
-  // sanftes Einblenden der Abschnitte beim Scrollen
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+window.I18N = {
+  en: {
+    _title: "Alan Kieś – International Business",
+    nav_about: "About", nav_edu: "Education", nav_exp: "Experience", nav_gallery: "Gallery", nav_contact: "Contact",
+    tagline: "Business graduate of <strong>SGH Warsaw School of Economics</strong>, focused on international business and <strong>German-Polish economic relations</strong>.",
+    chip_region: "Nuremberg · Fürth · Erlangen area",
+    chip_open: "Open to new opportunities",
+    btn_contact: "Get in touch",
+    btn_cv: "CV (PDF, German)",
+    about_h: "About me",
+    about_p1: "In 2026 I completed my bachelor's degree in <strong>“Global Business, Finance and Management (Governance)”</strong> at SGH Warsaw School of Economics. My focus is on economic relations between Germany and Poland – in my studies, my thesis and my student activities.",
+    about_p2: "I gained practical experience in <strong>financial management, accounting and administration</strong> – during my internship at CBRE and as a board member of two student associations at SGH.",
+    about_p3: "I am currently moving to the Nuremberg area and looking for an entry-level position where I can apply my knowledge of international business, finance and German-Polish cooperation.",
+    edu_h: "Education",
+    edu1_t: "Bachelor – Global Business, Finance and Management (Governance)",
+    edu1_d: "Full-time bachelor's programme specialising in international business and German-Polish economic management.",
+    edu2_when: "Additional qualification",
+    edu2_t: "Management of German-Polish Business Activities",
+    edu2_w: "German-Polish Forum at SGH",
+    edu2_d: "Interdisciplinary specialisation comprising nine courses completed in German.",
+    edu3_t: "Secondary school diploma (Matura)",
+    edu3_w: "II General Secondary School in Chełm",
+    thesis_l: "Bachelor's thesis",
+    thesis_t: "Regional differentiation of Germany's trade relations with Poland – a comparative analysis of the eastern and western federal states, 2015–2024",
+    thesis_d: "Supervised at the Department of German Economic Studies at SGH, defended with the grade “very good” (5).",
+    exp_h: "Experience &amp; Engagement",
+    exp1_t: "President",
+    exp1_w: "Student Association for German-Polish Cooperation at SGH (SKN WPN)",
+    exp1_d: "Leading the association, organising events and partnerships – including the German-Polish <strong>“Sprachbrücken”</strong> language exchange events at SGH.",
+    exp2_t: "Summer internship – Property Management",
+    warsaw: "Warsaw",
+    exp2_d: "Internship in the Property Management department of one of the world's leading real estate services firms.",
+    exp3_t: "Vice President for Finance and Administration",
+    exp3_w: "Student Association for Investment and Real Estate at SGH",
+    exp3_d: "Responsible for the association's finances and administration.",
+    exp4_t: "Head of the Logistics Team",
+    exp4_d: "Coordinating the event's logistics and schedule.",
+    exp5_t: "Graphic Designer",
+    exp5_d: "Designing graphics and visual materials for the conference.",
+    aw_h: "Achievements &amp; Certificates",
+    aw1_t: "Goethe-Zertifikat B2", aw1_d: "German",
+    aw2_t: "Two-time finalist of the Geography Olympiad", aw2_d: "National secondary school competition in Poland",
+    aw3_t: "HSK 1 and HSK 2", aw3_d: "Chinese language certificates",
+    aw4_t: "Driving licence, category B", aw4_d: "Car",
+    lang_h: "Languages",
+    l_pl: "Polish", l_pl_d: "Native",
+    l_de: "German", l_de_d: "B2/C1 · Goethe-Zertifikat B2",
+    l_en: "English", l_zh: "Chinese",
+    ct_eye: "Contact",
+    ct_h: "Let's talk.",
+    ct_p: "I'm happy to hear about job opportunities, collaborations or simply to exchange ideas.",
+    ct_mail: "Send an email",
+    ft_privacy: "Privacy"
+  },
+  pl: {
+    _title: "Alan Kieś – biznes międzynarodowy",
+    nav_about: "O mnie", nav_edu: "Wykształcenie", nav_exp: "Doświadczenie", nav_gallery: "Galeria", nav_contact: "Kontakt",
+    tagline: "Absolwent <strong>SGH w Warszawie</strong> specjalizujący się w biznesie międzynarodowym i <strong>polsko-niemieckich stosunkach gospodarczych</strong>.",
+    chip_region: "Region Norymbergi · Fürth · Erlangen",
+    chip_open: "Otwarty na nowe wyzwania zawodowe",
+    btn_contact: "Skontaktuj się",
+    btn_cv: "CV (PDF, po niemiecku)",
+    about_h: "O mnie",
+    about_p1: "W 2026 roku ukończyłem studia licencjackie na kierunku <strong>„Globalny biznes, finanse i zarządzanie (Governance)”</strong> w Szkole Głównej Handlowej w Warszawie. Specjalizuję się w stosunkach gospodarczych między Niemcami a Polską – w trakcie studiów, w pracy dyplomowej i w działalności studenckiej.",
+    about_p2: "Doświadczenie praktyczne zdobyłem w obszarach <strong>zarządzania finansami, rachunkowości i administracji</strong> – podczas praktyk w CBRE oraz jako członek zarządu dwóch kół naukowych SGH.",
+    about_p3: "Obecnie przeprowadzam się w okolice Norymbergi i szukam stanowiska na start kariery, na którym wykorzystam swoją wiedzę z zakresu biznesu międzynarodowego, finansów i współpracy polsko-niemieckiej.",
+    edu_h: "Wykształcenie",
+    edu1_t: "Licencjat – Globalny biznes, finanse i zarządzanie (Governance)",
+    edu1_d: "Studia stacjonarne pierwszego stopnia ze specjalizacją w biznesie międzynarodowym i polsko-niemieckim zarządzaniu gospodarczym.",
+    edu2_when: "Dodatkowe kwalifikacje",
+    edu2_t: "Zarządzanie polsko-niemiecką działalnością gospodarczą",
+    edu2_w: "Forum Polsko-Niemieckie SGH",
+    edu2_d: "Interdyscyplinarna specjalizacja obejmująca dziewięć przedmiotów zaliczonych w języku niemieckim.",
+    edu3_t: "Matura",
+    edu3_w: "II Liceum Ogólnokształcące w Chełmie",
+    thesis_l: "Praca licencjacka",
+    thesis_t: "Regionalne zróżnicowanie stosunków handlowych Niemiec z Polską – analiza porównawcza wschodnich i zachodnich krajów związkowych w latach 2015–2024",
+    thesis_d: "Napisana w Katedrze Badań nad Gospodarką Niemiec SGH, obroniona na ocenę bardzo dobrą (5).",
+    exp_h: "Doświadczenie i działalność",
+    exp1_t: "Przewodniczący",
+    exp1_w: "Studenckie Koło Naukowe Współpracy Polsko-Niemieckiej SGH (SKN WPN)",
+    exp1_d: "Kierowanie kołem, organizacja wydarzeń i współpracy – w tym polsko-niemieckich spotkań językowych <strong>„Sprachbrücken”</strong> w SGH.",
+    exp2_t: "Praktyki letnie – Property Management",
+    warsaw: "Warszawa",
+    exp2_d: "Praktyki w dziale Property Management jednej z wiodących na świecie firm doradczych na rynku nieruchomości.",
+    exp3_t: "Wiceprzewodniczący ds. finansów i administracji",
+    exp3_w: "Studenckie Koło Naukowe Inwestycji i Nieruchomości SGH",
+    exp3_d: "Odpowiedzialność za finanse i administrację koła.",
+    exp4_t: "Kierownik zespołu logistyki",
+    exp4_d: "Koordynacja logistyki i przebiegu wydarzenia.",
+    exp5_t: "Grafik",
+    exp5_d: "Projektowanie grafik i materiałów wizualnych na konferencję.",
+    aw_h: "Osiągnięcia i certyfikaty",
+    aw1_t: "Goethe-Zertifikat B2", aw1_d: "Język niemiecki",
+    aw2_t: "Dwukrotny finalista Olimpiady Geograficznej", aw2_d: "Ogólnopolska olimpiada przedmiotowa",
+    aw3_t: "HSK 1 i HSK 2", aw3_d: "Certyfikaty z języka chińskiego",
+    aw4_t: "Prawo jazdy kat. B", aw4_d: "Samochód osobowy",
+    lang_h: "Języki",
+    l_pl: "Polski", l_pl_d: "Język ojczysty",
+    l_de: "Niemiecki", l_de_d: "B2/C1 · Goethe-Zertifikat B2",
+    l_en: "Angielski", l_zh: "Chiński",
+    ct_eye: "Kontakt",
+    ct_h: "Porozmawiajmy.",
+    ct_p: "Chętnie odpowiem na wiadomości dotyczące ofert pracy, współpracy albo po prostu wymiany doświadczeń.",
+    ct_mail: "Napisz e-mail",
+    ft_privacy: "Prywatność"
+  }
+};
 </script>
+<script src="i18n.js"></script>
 </body>
 </html>
