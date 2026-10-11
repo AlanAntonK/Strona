@@ -161,7 +161,7 @@ h2{font-family:Sora,sans-serif;font-weight:600;font-size:30px;letter-spacing:-.0
 .feature p{color:var(--grey);font-size:15.5px}
 
 /* Erfolge */
-.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .award{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;transition:border-color .25s}
 .award:hover{border-color:rgba(16,185,129,.45)}
 .award .yr{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--emerald);letter-spacing:.06em}
@@ -277,3 +277,18 @@ footer a:hover{color:var(--emerald)}
   html{scroll-behavior:auto}
 }
 @media (max-width:640px){ .logo-wall{gap:10px} .logo-wall .logo-tile{width:58px;height:58px;border-radius:12px} .logo-wall .logo-tile img{padding:6px} .logo-wall .logo-tile.fill img{padding:0} }
+
+/* Flaggen als Logo-Kachel */
+.logo-tile.flag-one,.logo-tile.flag-duo{background:var(--panel-2)}
+.logo-tile.flag-one img,.logo-tile.flag-duo img{inset:auto;height:auto;padding:0;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+.logo-tile.flag-one img{left:16%;top:50%;width:68%;transform:translateY(-50%)}
+.logo-tile.flag-duo img{width:56%}
+.logo-tile.flag-duo img:first-child{left:13%;top:22%}
+.logo-tile.flag-duo img:last-child{right:13%;bottom:22%}
+
+/* Interessen & Aufzählungen */
+.interests{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.station ul{margin-top:14px;padding-left:18px}
+.station li{color:var(--grey);font-size:15.5px}
+.station li + li{margin-top:4px}
+.station li::marker{color:var(--emerald)}
