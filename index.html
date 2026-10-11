@@ -20,14 +20,14 @@
       <ul>
         <li><a href="#ueber-mich" data-i18n="nav_about">Über mich</a></li>
         <li><a href="#ausbildung" data-i18n="nav_edu">Ausbildung</a></li>
-        <li><a href="#erfahrung" data-i18n="nav_exp">Erfahrung</a></li>
+        <li><a href="erfahrung.html" data-i18n="nav_exp">Erfahrung</a></li>
         <li><a href="galerie.html" data-i18n="nav_gallery">Galerie</a></li>
         <li><a href="#kontakt" data-i18n="nav_contact">Kontakt</a></li>
       </ul>
       <div class="lang-switch" role="group" aria-label="Sprache / Language / Język">
-        <button type="button" data-lang="de" aria-pressed="true">DE</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-        <button type="button" data-lang="pl" aria-pressed="false">PL</button>
+        <button type="button" data-lang="de" aria-pressed="true"><img class="flag" src="flags/de.svg" alt="">DE</button>
+        <button type="button" data-lang="en" aria-pressed="false"><img class="flag" src="flags/gb.svg" alt="">EN</button>
+        <button type="button" data-lang="pl" aria-pressed="false"><img class="flag" src="flags/pl.svg" alt="">PL</button>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
       <h1 class="chrome">Alan Kieś</h1>
       <p class="tagline" data-i18n="tagline">Wirtschaftsabsolvent der <strong>SGH Warschau</strong> mit Schwerpunkt auf internationalem Business und <strong>deutsch-polnischen Wirtschaftsbeziehungen</strong>.</p>
       <div class="meta">
-        <span class="chip"><i>●</i><span data-i18n="chip_region">Region Nürnberg · Fürth · Erlangen</span></span>
+        <span class="chip"><img class="crest" src="wappen/nuernberg.png" alt="Wappen Nürnberg"><img class="crest" src="wappen/fuerth.svg" alt="Wappen Fürth"><span data-i18n="chip_region">Region Nürnberg · Fürth · Erlangen</span></span>
         <span class="chip"><i>●</i><span data-i18n="chip_open">Offen für neue Positionen</span></span>
       </div>
       <div class="cta">
@@ -73,27 +73,30 @@
   <section id="ausbildung" class="reveal">
     <div class="sec-head"><span class="sec-num">02</span><h2 data-i18n="edu_h">Ausbildung</h2></div>
 
-    <div class="card">
-      <div class="when">2023 – 2026</div>
+    <div class="card with-logo">
+      <div class="logo-tile"><img src="logos/sgh-godlo.jpg" alt="SGH"></div>
       <div>
+        <div class="when">2023 – 2026 · <img class="crest" src="wappen/warszawa.svg" alt=""><span data-i18n="warsaw">Warschau</span></div>
         <h3 data-i18n="edu1_t">Bachelor – Global Business, Finance and Management (Governance)</h3>
         <div class="where">SGH Warsaw School of Economics</div>
         <p data-i18n="edu1_d">Vollzeit-Bachelorstudium mit Spezialisierung in internationalem Business und deutsch-polnischem Wirtschaftsmanagement.</p>
       </div>
     </div>
 
-    <div class="card">
-      <div class="when" data-i18n="edu2_when">Zusatz&shy;qualifikation</div>
+    <div class="card with-logo">
+      <div class="logo-tile"><img src="logos/sgh.png" alt="SGH"></div>
       <div>
+        <div class="when" data-i18n="edu2_when">Zusatzqualifikation</div>
         <h3 data-i18n="edu2_t">Management der deutsch-polnischen Wirtschaftsaktivitäten</h3>
         <div class="where" data-i18n="edu2_w">Deutsch-Polnisches Forum der SGH</div>
         <p data-i18n="edu2_d">Interdisziplinäre Spezialisierung mit neun auf Deutsch absolvierten Fächern.</p>
       </div>
     </div>
 
-    <div class="card">
-      <div class="when">2019 – 2023</div>
+    <div class="card with-logo">
+      <div class="logo-tile crest-tile"><img src="wappen/chelm.png" alt="Wappen Chełm"></div>
       <div>
+        <div class="when">2019 – 2023 · Chełm</div>
         <h3 data-i18n="edu3_t">Allgemeine Hochschulreife</h3>
         <div class="where" data-i18n="edu3_w">II. Allgemeinbildendes Lyzeum in Chełm</div>
       </div>
@@ -112,50 +115,38 @@
   <section id="erfahrung" class="reveal">
     <div class="sec-head"><span class="sec-num">03</span><h2 data-i18n="exp_h">Erfahrung &amp; Engagement</h2></div>
 
-    <div class="card">
-      <div class="when">10.2025 – 07.2026</div>
+    <a class="card with-logo" href="erfahrung.html#skn-wpn" style="text-decoration:none">
+      <div class="logo-tile"><img src="logos/skn-wpn.png" alt="SKN WPN"></div>
       <div>
+        <div class="when">10.2025 – 07.2026</div>
         <h3 data-i18n="exp1_t">Vorsitzender</h3>
         <div class="where" data-i18n="exp1_w">Studentischer Verein für deutsch-polnische Zusammenarbeit an der SGH (SKN WPN)</div>
         <p data-i18n="exp1_d">Leitung des Vereins, Organisation von Veranstaltungen und Kooperationen – darunter die deutsch-polnischen <strong>Sprachbrücken</strong> an der SGH.</p>
       </div>
-    </div>
+    </a>
 
-    <div class="card">
-      <div class="when">07 – 08.2025</div>
+    <a class="card with-logo" href="erfahrung.html#cbre" style="text-decoration:none">
+      <div class="logo-tile cbre"><img src="logos/cbre.jpg" alt="CBRE"></div>
       <div>
+        <div class="when">07 – 08.2025</div>
         <h3 data-i18n="exp2_t">Sommerpraktikum – Property Management</h3>
         <div class="where">CBRE · <span data-i18n="warsaw">Warschau</span></div>
-        <!-- Tipp: hier noch 1–2 konkrete Aufgaben ergänzen -->
         <p data-i18n="exp2_d">Praktikum in der Abteilung Property Management eines der weltweit führenden Immobiliendienstleister.</p>
       </div>
-    </div>
+    </a>
 
-    <div class="card">
-      <div class="when">05.2024 – 10.2025</div>
+    <a class="card with-logo" href="erfahrung.html#skn-inwestycji" style="text-decoration:none">
+      <div class="logo-tile fill"><img src="logos/skn-inwestycji.jpg" alt="SKN Inwestycji i Nieruchomości"></div>
       <div>
+        <div class="when">05.2024 – 10.2025</div>
         <h3 data-i18n="exp3_t">Stellv. Vorsitzender für Finanzen und Verwaltung</h3>
         <div class="where" data-i18n="exp3_w">Studentischer Verein für Investitionen und Immobilien an der SGH</div>
         <p data-i18n="exp3_d">Verantwortung für Finanzen und Verwaltung des Vereins.</p>
       </div>
-    </div>
+    </a>
 
-    <div class="card">
-      <div class="when">03.2024</div>
-      <div>
-        <h3 data-i18n="exp4_t">Leiter des Logistikteams</h3>
-        <div class="where">Real Estate Case Day 2024</div>
-        <p data-i18n="exp4_d">Koordination der Logistik und des Ablaufs der Veranstaltung.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="when">11.2023 – 03.2024</div>
-      <div>
-        <h3 data-i18n="exp5_t">Grafikdesigner</h3>
-        <div class="where">Real Estate Conference 2024</div>
-        <p data-i18n="exp5_d">Gestaltung von Grafiken und visuellen Materialien für die Konferenz.</p>
-      </div>
+    <div class="more">
+      <a class="btn ghost" href="erfahrung.html"><span data-i18n="exp_all">Alle Stationen ansehen</span> <span class="arrow">→</span></a>
     </div>
   </section>
 
@@ -178,10 +169,10 @@
   <section id="sprachen" class="reveal">
     <div class="sec-head"><span class="sec-num">05</span><h2 data-i18n="lang_h">Sprachen</h2></div>
     <div class="langs">
-      <div class="lang"><strong data-i18n="l_pl">Polnisch</strong><span data-i18n="l_pl_d">Muttersprache</span><div class="bar"><b style="width:100%"></b></div></div>
-      <div class="lang"><strong data-i18n="l_de">Deutsch</strong><span data-i18n="l_de_d">B2/C1 · Goethe-Zertifikat B2</span><div class="bar"><b style="width:78%"></b></div></div>
-      <div class="lang"><strong data-i18n="l_en">Englisch</strong><span>C1</span><div class="bar"><b style="width:85%"></b></div></div>
-      <div class="lang"><strong data-i18n="l_zh">Chinesisch</strong><span>A2 · HSK 2</span><div class="bar"><b style="width:30%"></b></div></div>
+      <div class="lang"><div class="lang-top"><strong data-i18n="l_pl">Polnisch</strong><img class="flag" src="flags/pl.svg" alt=""></div><span data-i18n="l_pl_d">Muttersprache</span><div class="bar"><b style="width:100%"></b></div></div>
+      <div class="lang"><div class="lang-top"><strong data-i18n="l_de">Deutsch</strong><img class="flag" src="flags/de.svg" alt=""></div><span data-i18n="l_de_d">B2/C1 · Goethe-Zertifikat B2</span><div class="bar"><b style="width:78%"></b></div></div>
+      <div class="lang"><div class="lang-top"><strong data-i18n="l_en">Englisch</strong><img class="flag" src="flags/gb.svg" alt=""></div><span>C1</span><div class="bar"><b style="width:85%"></b></div></div>
+      <div class="lang"><div class="lang-top"><strong data-i18n="l_zh">Chinesisch</strong><span class="zh-badge" aria-hidden="true">中</span></div><span>A2 · HSK 2</span><div class="bar"><b style="width:30%"></b></div></div>
     </div>
   </section>
 
@@ -257,6 +248,7 @@ window.I18N = {
     exp4_d: "Coordinating the event's logistics and schedule.",
     exp5_t: "Graphic Designer",
     exp5_d: "Designing graphics and visual materials for the conference.",
+    exp_all: "View all positions",
     aw_h: "Achievements &amp; Certificates",
     aw1_t: "Goethe-Zertifikat B2", aw1_d: "German",
     aw2_t: "Two-time finalist of the Geography Olympiad", aw2_d: "National secondary school competition in Poland",
@@ -310,6 +302,7 @@ window.I18N = {
     exp4_d: "Koordynacja logistyki i przebiegu wydarzenia.",
     exp5_t: "Grafik",
     exp5_d: "Projektowanie grafik i materiałów wizualnych na konferencję.",
+    exp_all: "Zobacz całe doświadczenie",
     aw_h: "Osiągnięcia i certyfikaty",
     aw1_t: "Goethe-Zertifikat B2", aw1_d: "Język niemiecki",
     aw2_t: "Dwukrotny finalista Olimpiady Geograficznej", aw2_d: "Ogólnopolska olimpiada przedmiotowa",
